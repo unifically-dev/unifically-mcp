@@ -3,7 +3,7 @@
   "name": "com.unifically/mcp",
   "description": "One API for 100+ AI models. Generate video, images, music, and speech with Veo 3.1, Kling, SeeDance, Grok Imagine, Nano Banana, Suno, ElevenLabs, and more.",
   "repository": {
-    "url": "https://github.com/unifically/unifically-mcp",
+    "url": "https://github.com/unifically-dev/unifically-mcp",
     "source": "github"
   },
   "version": "1.0.0",

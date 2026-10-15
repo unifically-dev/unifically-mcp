@@ -1,12 +1,34 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.unifically/mcp",
-  "description": "One API for 100+ AI video, image, music and speech models.",
+  "title": "UnificAlly",
+  "description": "One API key for 100+ AI video, image, music and speech models: Veo, Kling, Suno, Nano Banana.",
+  "websiteUrl": "https://unifically.com/mcp",
   "repository": {
     "url": "https://github.com/unifically-dev/unifically-mcp",
     "source": "github"
   },
-  "version": "1.0.0",
+  "version": "1.1.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@unifically/mcp-server",
+      "version": "1.1.0",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "UNIFICALLY_API_KEY",
+          "description": "Your UnificAlly API key from https://unifically.com/api-keys. Usage is billed to your account balance.",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ],
   "remotes": [
     {
       "type": "streamable-http",
@@ -14,9 +36,9 @@
       "headers": [
         {
           "name": "Authorization",
-          "description": "Bearer token using your Unifically API key, e.g. 'Bearer sk-...'",
-          "is_required": true,
-          "is_secret": true
+          "description": "Bearer <your UnificAlly API key>. Get one at https://unifically.com/api-keys.",
+          "isRequired": true,
+          "isSecret": true
         }
       ]
     }

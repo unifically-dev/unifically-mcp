@@ -1,0 +1,38 @@
+# Docker Compose for self-hosting (Coolify, Dokploy, plain Docker, etc.).
+# Coolify: create a "Docker Compose" resource pointing at this file, attach your
+# mcp.* domain to the service, and Coolify's proxy terminates TLS for you.
+services:
+  unifically-mcp:
+    build: .
+    restart: unless-stopped
+    # Forward signals to node (PID 1) so deploys stop the container cleanly.
+    init: true
+    environment:
+      MCP_TRANSPORT: http
+      PORT: 8787
+      # Real UnificAlly API (override only for staging/proxy).
+      UNIFICALLY_BASE_URL: https://api.unifically.com
+      # Public multi-tenant default: each client sends its own
+      # "Authorization: Bearer <api-key>" — no key is stored on the server.
+      # HTTP never falls back to a shared environment key.
+      #
+      # Optional: lock CORS to your own web origin (default "*").
+      # UNIFICALLY_CORS_ORIGIN: "https://app.example.com"
+      #
+      # This service is reachable only through the isolated Docker network, so
+      # its private-network peer is the deployment's reverse proxy.
+      UNIFICALLY_TRUSTED_PROXIES: private
+      # Set true only if that trusted proxy overwrites (not merely forwards) the
+      # Cloudflare header. X-Forwarded-For is used otherwise.
+      # UNIFICALLY_TRUST_CF_CONNECTING_IP: "true"
+    expose:
+      - "8787"
+    # For direct/local access without a proxy, publish the port instead:
+    # ports:
+    #   - "8787:8787"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:'+(process.env.PORT||8787)+'/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

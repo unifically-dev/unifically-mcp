@@ -1,0 +1,79 @@
+{
+  "name": "@unifically/mcp-server",
+  "version": "1.1.0",
+  "description": "UnificAlly MCP server: AI video, image generation, music, speech, transcription and upscaling from 100+ models (Veo, Kling, Seedance, Nano Banana, Flux, GPT Image, Suno, ElevenLabs, Topaz) with one API key.",
+  "mcpName": "com.unifically/mcp",
+  "type": "module",
+  "bin": {
+    "unifically-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "server.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "test": "npm run build && node tests/smoke.mjs",
+    "test:vitest": "vitest run",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^1.6.0"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "unifically",
+    "ai",
+    "ai video",
+    "ai-video",
+    "video generation",
+    "image generation",
+    "text-to-video",
+    "image-to-video",
+    "text-to-image",
+    "text-to-speech",
+    "music generation",
+    "ai music",
+    "transcription",
+    "upscaling",
+    "veo",
+    "veo 3.1",
+    "kling",
+    "seedance",
+    "nano banana",
+    "flux",
+    "gpt-image",
+    "suno",
+    "elevenlabs",
+    "topaz",
+    "claude",
+    "cursor",
+    "generative-ai"
+  ],
+  "author": "UnificAlly <contact@unifically.com> (https://unifically.com)",
+  "license": "MIT",
+  "homepage": "https://unifically.com/mcp",
+  "bugs": {
+    "url": "https://github.com/unifically-dev/unifically-mcp/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unifically-dev/unifically-mcp.git"
+  }
+}
